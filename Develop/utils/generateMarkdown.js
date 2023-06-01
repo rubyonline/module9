@@ -1,23 +1,35 @@
-const generateMarkdown = require('../index');
+const indexMarkdown = require('../index');
 let coolBadge = "Insert Badge Info Here"
+let printHere = "Placeholder text"
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  if(questions.license = 'MIT'){
-    coolBadge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+  if (license === 'MIT') {
+    coolBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
   } else {
-    coolBadge = ""
+    coolBadge = '';
   }
-
 };
 
+renderLicenseBadge();
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+//function renderLicenseLink(license) {
+//
+//}
+//THIS HAS BEEN COMMENTED OUT AS I HAVE TAKEN CARE OF IT IN THE LAST CHUNK OF CODE
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
+function renderLicenseSection(license) {
+  if(license === 'MIT'){
+    printHere = "This project uses the MIT license."
+  } else {
+    printHere = ''
+  }
+};
+
+renderLicenseSection();
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(questions) {
@@ -29,7 +41,7 @@ function generateMarkdown(questions) {
   
   - [Installation](#Installation)
   - [Usage](#Usage)
-  - [Lisence](#Lisence)
+  - [License](#License)
   - [Contributing](#Contributing)
   - [Test](#Test)
   - [Questions](#Questions)
@@ -38,20 +50,21 @@ function generateMarkdown(questions) {
   ${questions.installation}
 
   ## Usage
-  ${questions.Usage}
+  ${questions.usage}
 
-  ## Lisence
-
+  ## License
+  ${questions.license}
+  ${printHere}
   ${coolBadge}
 
   ## Contributing
   ${questions.contributing}
   
   ## Test
-  ${questions.Usage}
+  ${questions.test}
   
   ## Questions
-  https://github.com/  ${data.questions}
+  https://github.com/${questions.questions}
 `;
 }
 

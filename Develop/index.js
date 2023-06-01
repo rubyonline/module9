@@ -2,7 +2,7 @@
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown');
+const markdown = require('./utils/generateMarkdown');
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -30,10 +30,9 @@ const questions = [
     },
 
     {
-        type: "Checkbox",
-        name: "lisence",
-        message: "What liscence does this project use?",
-        choices: ['MIT', 'Other'],
+        type: "input",
+        name: "license",
+        message: "What liscence does this project use? You can enter MIT or Other",
     },
 
     {
@@ -56,16 +55,25 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    return fs.writeFileSync();
-}
+//function writeToFile(fileName, data) {
+  // return fs.writeFile(fileName, data, (err) => err && console.error(err));
+   // console.log(`README generated to ${fileName}`);
+//}
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions)
-        console.log();
-        writeToFile();
-}
+      .then(answers => {
+        const license = answers.license
+        const readmeData = markdown(answers);
+        fs.writeFile('README.md', readmeData, (err) => console.error(err));
+        console.log(`README.md file generated to readme.md`);
+        console.log(questions.lisence)
+      })
+      .catch(error => {
+        console.error('Error occurred:', error);
+      });
+  }
 
 // Function call to initialize app
 init();
